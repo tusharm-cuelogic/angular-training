@@ -28,7 +28,7 @@
     }
 
     function handleAuth($state) {
-        console.log('hiii');
+        // 
     }
 
 

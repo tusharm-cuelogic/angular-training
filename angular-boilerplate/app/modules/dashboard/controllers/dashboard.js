@@ -4,14 +4,14 @@
 
     angular
         .module('dashboard')
-        .controller('dashboardController', ['$scope', '$state', 'dashboardService', dashboardController]);
+        .controller('dashboardController', ['$scope', '$state', 'employeeService', dashboardController]);
 
-    function dashboardController($scope, $state, dashboardService) {
+    function dashboardController($scope, $state, employeeService) {
         $scope.blackSpinner = 'resource/images/blackSpinner.gif';
 
         $scope.userList = function() {
             //calling API and get user list
-            $scope.getUsers = dashboardService.getUserList().userDetails;
+            $scope.getUsers = employeeService.getEmployeeList().employeeDetails;
             $scope.subTabMenus = [{
                 'tabMenu': 'All',
                 'action': 'dashboard'

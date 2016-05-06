@@ -9,8 +9,8 @@
         console.log("Inside Base controller");
         //calling API and get menus
         $scope.getMenus = menuService.getSidebarMenuList().userMenu;
-        var userinfo = localStorageService.get('userinfo'); 
-        $rootScope.user_name = userinfo.name;
+        var employee = localStorageService.get('employeeinfo'); 
+        $rootScope.user_name = employee.name;
     }
 
 })();
