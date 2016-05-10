@@ -4,9 +4,9 @@
 
     angular
         .module('auth')
-        .controller('loginController', ['$scope', '$state', 'employeeService', '$location', 'localStorageServiceWrapper', loginController]);
+        .controller('loginController', ['$scope', '$state', 'employeeService', 'localStorageServiceWrapper', loginController]);
 
-    function loginController($scope, $state, employeeService, $location, localStorageServiceWrapper) {
+    function loginController($scope, $state, employeeService, localStorageServiceWrapper) {
         
         $scope.login = function() { 
             if($scope.email && $scope.password) {
@@ -14,7 +14,7 @@
                 
                 var userExists = false;
                 angular.forEach(getEmployee, function(value, key) {
-                    
+
                     if (!userExists) {
 
                         if (value.username === $scope.email && value.password === $scope.password) {
@@ -35,7 +35,7 @@
                 });
 
                 if (userExists) {
-                    $location.path('/dashboard');
+                   $state.transitionto('/dashboard');
                 } else {
                     alert("Username and Password is incorrect")
                 }

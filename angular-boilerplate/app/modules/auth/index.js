@@ -1,1 +1,1 @@
-angular.module('auth', ['dashboard.service']);
+angular.module('auth', ['employee.service']);

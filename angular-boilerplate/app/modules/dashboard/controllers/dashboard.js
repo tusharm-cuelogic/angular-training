@@ -12,6 +12,7 @@
         $scope.userList = function() {
             //calling API and get user list
             $scope.getUsers = employeeService.getEmployeeList().employeeDetails;
+            
             $scope.subTabMenus = [{
                 'tabMenu': 'All',
                 'action': 'dashboard'
