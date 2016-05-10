@@ -3,19 +3,27 @@
     <form class="col-md-7">
         <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" value="{{getEmployeeInfo.firstname}}">
+            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" ng-model="getEmployeeInfo.firstname">
         </div>
         <div class="form-group">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" value="{{getEmployeeInfo.lastname}}">
+            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" ng-model="getEmployeeInfo.lastname">
         </div>
         <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" value="{{getEmployeeInfo.username}}">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="getEmployeeInfo.username">
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input type="department" class="form-control" id="department" placeholder="Enter department" ng-model="getEmployeeInfo.department">
+        </div>
+        <div class="form-group">
+            <label for="salary">Salary</label>
+            <input type="salary" class="form-control" id="salary" placeholder="Enter salary" ng-model="getEmployeeInfo.salary">
         </div>
         <div class="form-group">
             <div class="row">
-                <label for="" class="col-md-12">Gender-</label>
+                <label for="" class="col-md-12">Gender</label>
                 <label class="col-md-6">
                     <input type="radio" name="gender" id="male" value="male" ng-model="getEmployeeInfo.gender"> Male
                 </label>
@@ -28,6 +36,7 @@
             <label for="exampleInputFile">Upload file</label>
             <input type="file" id="exampleInputFile">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" ng-click="userInfo()" class="btn btn-primary">Submit</button>
+        <button type="submit" ng-click="cancelAction()" class="btn btn-primary">Cancel</button>
     </form>
 </div>

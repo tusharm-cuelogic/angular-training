@@ -5,21 +5,24 @@
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
+            <form>
+                <input type="text" class="form-control" placeholder="Search..." ng-model="search"/>
+            </form>
             <table class="table table-striped">
                 <thead>
-                    <th>Image</th>
-                    <th>Employee Name </th>
-                    <th>Department Name</th>
-                    <th>salary</th>
+                    <!-- <th>Image</th> -->
+                    <th class="cursor" ng-click="sortType='firstname'; sortReverse= !sortReverse">Employee Name </th>
+                    <th class="cursor" ng-click="sortType='department'; sortReverse= !sortReverse">Department Name</th>
+                    <th class="cursor" ng-click="sortType='salary'; sortReverse= !sortReverse">salary</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="singleUser in getUsers">
-                        <td><img height="100" width="100" src="{{blackSpinner}}" lazy-img="{{singleUser.image}}"></td>
+                    <tr ng-repeat="singleUser in getUsers | orderBy:sortType:sortReverse | filter:search">
+                        <!-- <td><img height="100" width="100" src="{{blackSpinner}}" lazy-img="{{singleUser.image}}"></td>-->
                         <td>{{singleUser.firstname}}</td>
                         <td>{{singleUser.department}}</td>
                         <td>${{singleUser.salary}}</td>
-                        <td><a ui-sref="/edit/{{singleUser.id}}">Edit</a> | <a ui-sref="/delete/{{singleUser.id}}">Delete</a></td>
+                        <td><a ui-sref="base.edit({id : singleUser.id})">Edit</a> | <a ng-click="deleteUser(singleUser.id)" class="cursor">Delete</a></td>
                     </tr>
                 </tbody>
             </table>

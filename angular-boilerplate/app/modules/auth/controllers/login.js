@@ -22,20 +22,20 @@
 
                             var employeeInfo = {
                                             "id": value.id,
-                                            "name": value.name,
+                                            "name": value.firstname,
                                             "department": value.department,
                                             "salary": value.salary,
                                             "image": value.image,
                                             "username": value.username,
                                         };
-
                             localStorageServiceWrapper.set("employeeinfo", employeeInfo);
+                            localStorageServiceWrapper.set("authenticated", true);
                         }  
                     }
                 });
 
                 if (userExists) {
-                   $state.transitionto('/dashboard');
+                   $state.transitionTo('base.dashboard');
                 } else {
                     alert("Username and Password is incorrect")
                 }

@@ -6,49 +6,43 @@
         .controller('userController', ['$state', '$scope', '$stateParams', 'employeeService', userController]);
 
     function userController($state, $scope, $stateParams, employeeService) {
-        $scope.setTitle = 'Add user';
         
         userId = parseInt($stateParams.id)
 
-        if (!isNaN(userId) && typeof(userId) == "number") {
-        	
-        	$scope.getEmployeeInfo = employeeService.getEmployeeList().employeeDetails[userId - 1];
+        $scope.is_edit = (!isNaN(userId) && typeof(userId) == "number" && userId > 0) ? true : false;
+        $scope.setTitle = ($scope.is_edit) ? 'Edit user' : 'Add User';
 
-            var getEmployeeInfo = {
-                "id": 1,
-                "firstname": "Prasanna",
-                "lastname" : "Champ",
-                "gender" : "male",
-                "department": "Account",
-                "salary": 12000,
-                "image": "http://cache4.asset-cache.net/fk/176794537.jpg?v=1&c=IWSAsset&k=1&f=2&d=4575EEE0F3AA8377CD9D0036C287379E479DFF9E20496F56146E8D247CE15381",
-                "username": "prasanna@yopmail.com",
-                "password": "12345"
-            }
+        $scope.getEmployeeInfo = ($scope.is_edit) ? employeeService.getEmployee(userId) : null;
 
-            setEmployeeInfo = employeeService.setEmployeeList(userId, getEmployeeInfo);
-
-            $state.transitionTo('base.dashboard');
-
-        } else {
+        $scope.copyData = angular.copy($scope.getEmployeeInfo);
+        $scope.userInfo = function() {
             
-            var getEmployeeInfo = {
-                "id": 10,
-                "firstname": "Aju",
-                "lastname" : "John",
-                "gender" : "male",
-                "department": "Developer",
-                "salary": 21000,
-                "image": "resource/images/ipgeo.png",
-                "username": "ganesh@yopmail.com",
-                "password": "12345"
+            var userInfo =  {
+                'firstname': $scope.getEmployeeInfo.firstname,
+                'lastname': $scope.getEmployeeInfo.lastname,
+                'username': $scope.getEmployeeInfo.username,
+                'department': $scope.getEmployeeInfo.department,
+                'gender': $scope.getEmployeeInfo.gender,
+                'salary': $scope.getEmployeeInfo.salary,
+            };
+
+            userInfo['id'] = parseInt(employeeService.getEmployeeList().employeeDetails.length) + 1;
+            if($scope.is_edit) {
+                employeeService.updateEmployeeList(userId, userInfo);
+            } else {
+                $scope.updateUser = employeeService.setEmployeeList(userInfo);
             }
-            setEmployeeInfo = employeeService.setEmployeeList(0, getEmployeeInfo);
+            
+            $state.transitionTo('base.dashboard');
+        };
 
-            //$state.transitionTo('base.dashboard');
+        $scope.cancelAction = function() {
+             if ($scope.is_edit){
+                $scope.getEmployeeInfo = angular.copy($scope.copyData);
+            } else {
+                $state.transitionTo('base.dashboard');
+            }
         }
-
-        
     }
 
 })();

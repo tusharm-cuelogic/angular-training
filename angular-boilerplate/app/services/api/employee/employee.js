@@ -80,6 +80,9 @@ function employeeService($http) {
         };
 
     employee.getEmployeeList = getEmployeeList;
+    employee.updateEmployeeList = updateEmployeeList;
+    employee.deleteEmployee = deleteEmployee;
+    employee.getEmployee = getEmployee;
     employee.setEmployeeList = setEmployeeList;
 
     return employee;
@@ -88,34 +91,41 @@ function employeeService($http) {
         return employeeList;
     }
 
-    function setEmployeeList(userId, data) {
+    function getEmployee(userId) {
+        if(!isNaN(userId) && typeof(userId) == "number" && userId > 0) {
+            return employeeList.employeeDetails[userId - 1];
+        }
+    }
 
-        // var list = {
-        //     "id": 9,
-        //     "firstname": "Aju",
-        //     "lastname" : "John",
-        //     "gender" : "male",
-        //     "department": "Developer",
-        //     "salary": 21000,
-        //     "image": "resource/images/ipgeo.png",
-        //     "username": "ganesh@yopmail.com",
-        //     "password": "12345"
-        // }
-
+    function updateEmployeeList(userId, data) {
+        
         if (!isNaN(userId) && typeof(userId) == "number" && userId > 0) {
             employeeList.employeeDetails.splice(userId - 1, 1);
             employeeList.employeeDetails.push(data);
 
-            console.log(employeeList.employeeDetails);
+            return employeeList;
+        }
+        return false;
+    }
 
-        } else {
+    function setEmployeeList(data) {
+        console.log(data);
 
+        if (data != null) {
+            console.log(data);
             employeeList.employeeDetails.push(data);
 
-            console.log(employeeList.employeeDetails);
+            return employeeList;
         }
-        
-        return employeeList;
+        return false;
+    }
+
+    function deleteEmployee(userId) {
+
+        if (!isNaN(userId) && typeof(userId) == "number" && userId > 0) {
+            employeeList.employeeDetails.splice(userId - 1, 1);
+        }
+        return false;
     }
     //END
 };
