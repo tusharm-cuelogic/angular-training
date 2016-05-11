@@ -37,6 +37,7 @@ server.register(require('inert'), function(err) {
 
     server.start(function(err) {
         if (err) {
+            console.log(err);
             throw err;
         }
         console.log('Web server is listening to http://localhost:3000');

@@ -11,6 +11,7 @@
             'ui.bootstrap',
             'localStorage.service',
             'interceptor.service',
+            'custom.directive',
             'config',
             'auth',
             'base',

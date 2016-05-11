@@ -121,9 +121,10 @@ function employeeService($http) {
     }
 
     function deleteEmployee(userId) {
-
+        
         if (!isNaN(userId) && typeof(userId) == "number" && userId > 0) {
             employeeList.employeeDetails.splice(userId - 1, 1);
+            return employeeList;
         }
         return false;
     }

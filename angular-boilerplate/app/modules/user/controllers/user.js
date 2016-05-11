@@ -42,7 +42,7 @@
             } else {
                 $state.transitionTo('base.dashboard');
             }
-        }
+        };
     }
 
 })();
