@@ -1,34 +1,34 @@
 <div class="container-fluid paddingTP30">
     <h3 class="page-title">{{setTitle}}</h3>
-    <form class="col-md-7">
+    <form class="col-md-7" name="userinfo">
         <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" ng-model="getEmployeeInfo.firstname">
+            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" ng-model="getEmployeeInfo.firstname" required>            
         </div>
         <div class="form-group">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" ng-model="getEmployeeInfo.lastname">
+            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" ng-model="getEmployeeInfo.lastname" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="getEmployeeInfo.username">
+            <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="getEmployeeInfo.username" required>
         </div>
         <div class="form-group">
             <label for="department">Department</label>
-            <input type="department" class="form-control" id="department" placeholder="Enter department" ng-model="getEmployeeInfo.department">
+            <input type="department" class="form-control" id="department" placeholder="Enter department" ng-model="getEmployeeInfo.department" required>
         </div>
         <div class="form-group">
             <label for="salary">Salary</label>
-            <input type="salary" class="form-control" id="salary" placeholder="Enter salary" ng-model="getEmployeeInfo.salary">
+            <input type="salary" class="form-control" id="salary" placeholder="Enter salary" ng-model="getEmployeeInfo.salary" required>
         </div>
         <div class="form-group">
             <div class="row">
                 <label for="" class="col-md-12">Gender</label>
                 <label class="col-md-6">
-                    <input type="radio" name="gender" id="male" value="male" ng-model="getEmployeeInfo.gender"> Male
+                    <input type="radio" name="gender" id="male" value="male" ng-model="getEmployeeInfo.gender" required> Male
                 </label>
                 <label class="col-md-6">
-                    <input type="radio" name="gender" id="female" value="female" ng-model="getEmployeeInfo.gender"> Female
+                    <input type="radio" name="gender" id="female" value="female" ng-model="getEmployeeInfo.gender" required> Female
                 </label>
             </div>
         </div>
@@ -36,7 +36,7 @@
             <label for="exampleInputFile">Upload file</label>
             <input type="file" id="exampleInputFile">
         </div>
-        <button type="submit" ng-click="userInfo()" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" ng-submit-info submit-action="userInfo()" ng-disabled="isDisabled">{{buttonText}}</button>
         <button type="submit" ng-click="cancelAction()" class="btn btn-primary">Cancel</button>
     </form>
 </div>
